@@ -22,6 +22,7 @@ export default class Form extends Component {
     safeRenderCompletion: false,
     noHtml5Validate: false,
     ErrorList: DefaultErrorList,
+    noSubmitButton: false,
   };
 
   constructor(props) {
@@ -209,6 +210,7 @@ export default class Form extends Component {
       acceptcharset,
       noHtml5Validate,
       disabled,
+      noSubmitButton,
     } = this.props;
 
     const { schema, uiSchema, formData, errorSchema, idSchema } = this.state;
@@ -246,7 +248,7 @@ export default class Form extends Component {
           safeRenderCompletion={safeRenderCompletion}
           disabled={disabled}
         />
-        {children ? (
+        {children && !noSubmitButton ? (
           children
         ) : (
           <p>
@@ -293,5 +295,6 @@ if (process.env.NODE_ENV !== "production") {
     transformErrors: PropTypes.func,
     safeRenderCompletion: PropTypes.bool,
     formContext: PropTypes.object,
+    noSubmitButton: PropTypes.bool,
   };
 }
